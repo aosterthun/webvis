@@ -1,0 +1,18 @@
+manuel@baerenkatapult:~/repos/webvis/YoutubeAPI$ python featuredChannels.py
+Starting...
+Loaded 1644 saved channels
+('Starting crawl with', 1, 'channels!')
+----------------------------
+Current depth: 3
+----------------------------
+('Crawling for url', u'UCbn9V_U62LCmxWTiT7DI5eA')
+('     Channel unknown', u'Mary May')
+----------------------------
+Current depth: 2
+----------------------------
+----------------------------
+Current depth: 1
+----------------------------
+('Crawled', 1, 'with', 1, 'new channels!')
+(u'Mary May', '->', u'UCbn9V_U62LCmxWTiT7DI5eA')
+Done!
