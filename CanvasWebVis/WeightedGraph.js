@@ -60,6 +60,7 @@ WeightedGraph.prototype.draw = function(_context)
 		_vertex.traverse(function(_adjacent_vertex){
 			_context.lineWidth=1;			
 			_dest_coords = {x: _adjacent_vertex.data.adjacent_vertex.x, y: _adjacent_vertex.data.adjacent_vertex.y};
+			_context.beginPath();
 			_context.moveTo(_source_coords.x,_source_coords.y);
 			_context.lineTo(_dest_coords.x,_dest_coords.y);
 			_context.lineWidth=_adjacent_vertex.data.weight;
