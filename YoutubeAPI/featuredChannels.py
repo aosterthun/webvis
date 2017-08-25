@@ -23,7 +23,6 @@ SUB_ID["HandOfBlood"] = "UC9YTp5M6yYgSd6t0SeL2GQw"
 
 #File managment variables
 CHANNEL_FOLDER = "channels/"
-UNICODE_ERROR = "unicode_fucked_up"
 
 #File managment functions
 def save_json(DICT, FILENAME = "no_filename.json"):
@@ -34,7 +33,7 @@ def load_json(FILENAME):
     if FILENAME == None: #guard, or rather use try-catch?
         return None
 
-    with open(FILENAME) as data_file:    
+    with open(FILENAME) as data_file:
         return json.load(data_file)
 
 #Mapping of URL -> Title
@@ -180,7 +179,7 @@ def main():
         return
 
     print("Starting crawl with", len(seed), "channels!")
-    crawl(SEED = seed, DEPTH = 10)
+    crawl(SEED = seed, DEPTH = 3)
 
     print("Crawled", len(CRAWLED_CHANNELS.keys()), "with", NEW_CHANNELS,"new channels!")
     for url in CRAWLED_CHANNELS:
