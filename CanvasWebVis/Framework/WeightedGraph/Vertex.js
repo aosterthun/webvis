@@ -1,5 +1,16 @@
-function Vertex(_id){
+function Vertex(_id,_y){
 	this.id = _id;
+	this.coords = {"x": 0, "y": _y};
+	this.size = 20;
+	this.depth = 0;
+	this.color = "white";
+}
+
+Vertex.prototype.setDepth = function(_graph,_depth)
+{
+	this.depth = _depth;
+	this.coords.x = _graph.vertex_offset * _depth;
+	console.log(this.coords.x);
 }
 
 Vertex.prototype.getAdjacentVertecies = function(_graph)
@@ -30,9 +41,14 @@ Vertex.prototype.getEdges = function(_graph)
 	return _edges;
 }
 
-Vertex.prototype.draw = function(_c)
+Vertex.prototype.draw = function(_c,_graph)
 {
+	_vertecies_at_vertex_depth = _graph.edges.filter(function(_edge){return this.id == _edge.source_vertex_id},this);
+	_vertecies_depth_count = _vertecies_at_vertex_depth.length;
+
+
 	_c.beginPath();
-	_c.arc(100,100,20,0,2*Math.PI);
-	_c.stroke();
+	_c.arc(this.coords.x,this.coords.y,this.size,0,2*Math.PI);
+	_c.fillStyle = this.color;
+	_c.fill();
 }
