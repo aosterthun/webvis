@@ -260,60 +260,79 @@ WeightedGraph.prototype.drawEdge = function(_edge)
 	_midpoint = _source_vertex_edges.length / 2;
 
 	this.draw_settings.context.beginPath();
-	//console.log(_source_vertex.coords.x);
-	this.draw_settings.context.strokeStyle = _edge.color;
+
 	_bezier_offset = {"x": 0, "y": 0};
+	var xStart, yStart, cp1x, cp1y, cp2x, cp2y, xEnd, yEnd;
 
 	if (_source_vertex.coords.x == _dest_vertex.coords.x)
 	{
 		_bezier_offset.x = -this.vertex_offset/1.5;
+
 		this.draw_settings.context.moveTo(_source_vertex.coords.x_abs,_source_vertex.coords.y_abs);
 		
-		this.draw_settings.context.bezierCurveTo(
-						_source_vertex.coords.x_abs + _bezier_offset.x,
-						_source_vertex.coords.y_abs,
-						_dest_vertex.coords.x_abs + _bezier_offset.x,
-						_dest_vertex.coords.y_abs,
-						_dest_vertex.coords.x_abs,
-						_dest_vertex.coords.y_abs);
+		cp1x = _source_vertex.coords.x_abs + _bezier_offset.x;
+		cp1y = _source_vertex.coords.y_abs;
+		cp2x = _dest_vertex.coords.x_abs + _bezier_offset.x;
+		cp2y =_dest_vertex.coords.y_abs;
+		xEnd =_dest_vertex.coords.x_abs;
+		yEnd = _dest_vertex.coords.y_abs;
 
-		this.draw_settings.context.stroke();	
 	}
 	else
 	{
 		if(_edge_number < Math.floor(_midpoint,0))
 		{
 			//console.log("smaller");
-			this.draw_settings.context.moveTo(_source_vertex.coords.x_abs + _source_vertex.size,_source_vertex.coords.y_abs);
 			_bezier_offset.x = -this.vertex_offset/2;
-			this.draw_settings.context.bezierCurveTo(_source_vertex.coords.x_abs+_source_vertex.size,
-						_source_vertex.coords.y_abs,
-						_dest_vertex.coords.x_abs + _bezier_offset.x,
-						_dest_vertex.coords.y_abs,
-						_dest_vertex.coords.x_abs,
-						_dest_vertex.coords.y_abs);
-			this.draw_settings.context.stroke();
+
+			this.draw_settings.context.moveTo(_source_vertex.coords.x_abs + _source_vertex.size,_source_vertex.coords.y_abs);
+			
+			cp1x = _source_vertex.coords.x_abs+_source_vertex.size;
+			cp1y = _source_vertex.coords.y_abs;
+			cp2x = _dest_vertex.coords.x_abs + _bezier_offset.x;
+			cp2y = _dest_vertex.coords.y_abs;
+			xEnd = _dest_vertex.coords.x_abs;
+			yEnd =_dest_vertex.coords.y_abs;
+
 		} 
 		else if(_edge_number > Math.floor(_midpoint,0))
 		{
 			//console.log("bigger");
-			this.draw_settings.context.moveTo(_source_vertex.coords.x_abs + _source_vertex.size,_source_vertex.coords.y_abs);
 			_bezier_offset.x = -this.vertex_offset/2;
-			this.draw_settings.context.bezierCurveTo(_source_vertex.coords.x_abs+_source_vertex.size,
-						_source_vertex.coords.y_abs,
-						_dest_vertex.coords.x_abs + _bezier_offset.x,
-						_dest_vertex.coords.y_abs,
-						_dest_vertex.coords.x_abs,
-						_dest_vertex.coords.y_abs);
-			this.draw_settings.context.stroke();
+
+			this.draw_settings.context.moveTo(_source_vertex.coords.x_abs + _source_vertex.size,_source_vertex.coords.y_abs);
+			
+			cp1x = _source_vertex.coords.x_abs+_source_vertex.size;
+			cp1y =_source_vertex.coords.y_abs;
+			cp2x = _dest_vertex.coords.x_abs + _bezier_offset.x;
+			cp2y = _dest_vertex.coords.y_abs;
+			xEnd = _dest_vertex.coords.x_abs;
+			yEnd = _dest_vertex.coords.y_abs;
+
 		} 
 		else if(_edge_number == Math.floor(_midpoint,0))
 		{
 			this.draw_settings.context.moveTo(_source_vertex.coords.x_abs + _source_vertex.size,_source_vertex.coords.y_abs);
-			this.draw_settings.context.lineTo(_dest_vertex.coords.x_abs,_dest_vertex.coords.y_abs);
-			this.draw_settings.context.stroke();
+			
+			cp1x = _source_vertex.coords.x_abs+_source_vertex.size;
+			cp1y =_source_vertex.coords.y_abs;
+			cp2x = _dest_vertex.coords.x_abs;
+			cp2y = _dest_vertex.coords.y_abs;
+			xEnd = _dest_vertex.coords.x_abs;
+			yEnd = _dest_vertex.coords.y_abs;
 		} 
 	}
+
+	this.draw_settings.context.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, _dest_vertex.coords.x_abs, _dest_vertex.coords.y_abs);
+
+	var my_gradient= this.draw_settings.context.createLinearGradient(_source_vertex.coords.x_abs,_source_vertex.coords.y_abs, _dest_vertex.coords.x_abs,_dest_vertex.coords.y_abs);
+
+	//my_gradient.addColorStop(0,_source_vertex.color);
+	my_gradient.addColorStop(0,_edge.color);
+	my_gradient.addColorStop(1,_edge.color);
+	
+	this.draw_settings.context.strokeStyle = my_gradient;
+	this.draw_settings.context.stroke();
 	this.draw_settings.context.strokeStyle = 'black';
 }
 
