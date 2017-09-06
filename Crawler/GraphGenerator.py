@@ -78,6 +78,7 @@ def crawl_policy(SEED, DEPTH):
 
     return graph
 
+C_P_INFO = True
 def cluster_policy(SEED, DEPTH):
     #[get_channel(id) for id in data[current_id]]
 
@@ -99,15 +100,10 @@ def cluster_policy(SEED, DEPTH):
     while current_depth <= DEPTH:
         print("current_depth " + str(current_depth))
         next_ids = []
-        current_edges = []
-        current_vertices = []
 
         y_count = 0
         for current_id in current_channel_ids:
-
             if current_id in linked_channels.keys():
-
-                #create vertex
 
                 vertex = dict()
                 vertex["id"] = current_id
@@ -116,137 +112,59 @@ def cluster_policy(SEED, DEPTH):
                 vertex["coords"]["y"] = y_count
                 vertex["channel_data"] = get_channel(current_id)
                 vertex["color"] = "white"
-                current_vertices.append(vertex)
+                graph["vertices"].append(vertex)
 
-                print("Created vertex for channel " + vertex["channel_data"]["title"])
+                if C_P_INFO: print("Created vertex for channel " + vertex["channel_data"]["title"])
 
                 if current_depth != DEPTH:
-                    for link_id in linked_channels[current_id]:
-                        if link_id not in traversed_channels_ids:
+                    for linked_id in linked_channels[current_id]:
+                        if linked_id not in traversed_channels_ids:
 
-                            if get_channel(link_id) != None:
+                            if get_channel(linked_id) != None:
 
-                                if link_id not in next_ids and link_id not in current_channel_ids:
-                                    next_ids.append(link_id)
+                                if linked_id not in next_ids and linked_id not in current_channel_ids:
+                                    next_ids.append(linked_id)
 
 
                                 #this could be enhanced by only searching
                                 #in the current column edges
                                 redundant_edge = False
-                                for edge in current_edges:
+                                for edge in graph["edges"]:
                                     source_id = edge["source_vertex_id"]
                                     dest_id = edge["dest_vertex_id"]
 
-                                    if source_id == current_id and dest_id == link_id:
+                                    if source_id == current_id and dest_id == linked_id:
                                         redundant_edge = True
-                                    elif source_id == link_id and dest_id == current_id:
+                                    elif source_id == linked_id and dest_id == current_id:
                                         redundant_edge = True
 
                                 if not redundant_edge:
                                     edge = dict()
                                     edge["id"] = len(graph["edges"]) + 1
                                     edge["source_vertex_id"] = current_id
-                                    edge["dest_vertex_id"] = link_id
+                                    edge["dest_vertex_id"] = linked_id
                                     edge["color"] = "white"
-                                    current_edges.append(edge)
-
-                                    print("Created edge: " + vertex["channel_data"]["title"] + " -> " + get_channel(link_id)["title"])
+                                    graph["edges"].append(edge)
+                                else:
+                                    print("Redundant edge")
+                                    print(current_id)
+                                    print(linked_id)
+                                    
+                                    if C_P_INFO: print("Created edge: " + vertex["channel_data"]["title"] + " -> " + get_channel(linked_id)["title"])
                             else:
-                                print("No data for id " + link_id)
+                                print("No data for id " + linked_id)
+                    #end of linked_id loop
 
             y_count += 1
+            #end of current_id loop
 
         graph["vertex_count_at_depth"].append(y_count)
-        graph["edges"].extend(current_edges)
-        graph["vertices"].extend(current_vertices)
         traversed_channels_ids.extend(current_channel_ids)
 
         current_channel_ids = next_ids
         current_depth += 1
 
     return graph
-
-def cluster_policyOLD(SEED, DEPTH):
-    global CHANNEL_FOLDER
-
-    graph = dict()
-    graph["vertices"] = []
-    graph["edges"] = []
-    graph["depth"] = DEPTH
-    graph["vertex_count_at_depth"] = []
-
-    double_linked = dict()
-    single_linked = dict()
-
-    current_depth = 0
-    current_ids = []
-    current_ids.extend(SEED)
-    checked_ids = []
-    next_ids = []
-
-    while current_depth <= DEPTH:
-        print("current_depth = " + str(current_depth))
-        y_count = 0
-
-        for current_id in current_ids:
-            if current_id not in checked_ids:
-                current_channel_data = get_channel(current_id)
-
-                if current_channel_data != None:
-             
-
-                    if current_depth != DEPTH:
-
-                        for featured_id in current_channel_data["featuredChannelsUrls"]:
-
-                            featured_channel_data = get_channel(featured_id)
-
-                            if featured_channel_data != None:
-                                linked_channels_ids = featured_channel_data["featuredChannelsUrls"]
-
-                                for channel_id in linked_channels_ids:
-                                    if channel_id == current_id:
-                                        in_cluster = False
-
-                                        if channel_id in double_linked.keys():
-                                            if current_id in double_linked[channel_id]:
-                                                in_cluster = True
-
-                                        if not in_cluster:
-                                            print(current_channel_data["title"] + " <-> " + featured_channel_data["title"])
-                                            next_ids.append(featured_id)
-
-                                            y_count += 1 #or len(next_ids) + 1
-                                            if current_id not in double_linked.keys():
-                                                double_linked[current_id] = []
-
-                                            double_linked[current_id].append(featured_id)
-
-                                           
-
-                                            checked_ids.extend(current_id)
-
-                                    else:
-                                        if current_id not in single_linked.keys():
-                                            single_linked[current_id] = []
-
-                                        single_linked[current_id].append(featured_id)
-
-                            else: # end of featured_channel_data != None
-                                print("Error while loading file " +  str(featured_id))
-
-                else: # end of current_channel_data != None:
-                    print("Error while loading file " +  str(current_id))
-
-        graph["vertex_count_at_depth"].append(y_count)
-
-        current_ids = next_ids
-        next_ids = []
-
-        current_depth += 1
-
-    return graph
-
 
 def generate_graph(POLICY, SEED, DEPTH):
 
@@ -260,23 +178,74 @@ def generate_graph(POLICY, SEED, DEPTH):
 
     return data
 
+def analyze_graph(GRAPH):
+
+    edges = GRAPH["edges"]
+    depth = GRAPH["depth"]
+
+    analytics = dict()
+    analytics["vertex_count_at_depth"] = []
+    analytics["vertex_analytics"] = []
+
+    vertices_in_depth = []
+    for current_depth in range(0,depth + 1):
+
+        vertices_ids = [v["id"] for v in GRAPH["vertices"] if v["coords"]["x"] == current_depth]
+
+        analytics["vertex_count_at_depth"].append(len(vertices_ids))
+
+        vertices_in_depth.append(vertices_ids)
+
+    for vertices in vertices_in_depth:
+        print("new depth")
+        for id1 in vertices:
+            data = dict()
+            data["id"] = id1
+            data["edges_in_same_depth"] = 0
+            
+            for id2 in vertices:
+                for edge in edges:
+                    flag = False
+                    if id1 == edge["source_vertex_id"] and id2 == edge["dest_vertex_id"]:
+                        flag = True
+                    if id2 == edge["source_vertex_id"] and id1 == edge["dest_vertex_id"]:
+                        flag = True
+
+                    if flag:
+                        data["edges_in_same_depth"] += 1
+            print(id1 + " has " + str(data["edges_in_same_depth"]) + " edges in the same depth")
+            analytics["vertex_analytics"].append(data)
+    
+    return analytics
+
 def main():
     print("Starting")
 
-    #read in request
-    request = load_json("../request.json")
+
+    if len(sys.argv) != 2:
+        print("Usage: " + sys.argv[0] + " request_path.json")
+        exit()
+
+    filepath = str(sys.argv[1])
+
+    request = load_json(filepath)
     request_id = str(request["request_id"])
     depth = int(request["depth"])
     seed = []
     seed.append(str(request["seed"]))
 
-    print("Generating response")
+    print("Generating graph")
     graph = generate_graph(POLICY = "cluster_policy", SEED = seed, DEPTH = depth)
+
+    print("Analyzing graph")
+    #analytics = analyze_graph(graph)
 
     file = dict()
     #file["request"] = request
     file["graph"] = graph
+    #file["analytics"] = analytics
 
+    print("Saving graph")
     save_json(file, "response_" + request_id + ".json")
 
     print("Statistics")
