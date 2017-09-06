@@ -7,31 +7,37 @@ function WeightedGraph(_json_graph){
 	this.vertex_offset = 100;
 	this.depth = _json_graph.depth;
 	this.vertex_count_at_depth = _json_graph.vertex_count_at_depth;
+	this.max_vertex_title_size_at_depth = [];
+	this.vertex_rect_padding = 0;
 }
 
 WeightedGraph.prototype.containsVertexAtCoords = function(_coords)
 {
 	_vertex_at_coords = this.vertecies.filter(function(_vertex){
-		return (Math.pow((_coords.x - _vertex.coords.x),2) + Math.pow((_coords.y - _vertex.coords.y),2)) < Math.pow(_vertex.size,2);
-		//return coords >= (_vertex.coords == _coords;
+		return ((_vertex.coords.x_abs <= _coords.x) && (_vertex.coords.x_abs + _vertex.size) >= _coords.x) &&
+				(((_vertex.coords.y_abs + (_vertex.font_size / 2)) >= _coords.y) && (_vertex.coords.y_abs) <= (_coords.y+ (_vertex.font_size / 2)));
 	});
+
+	console.log(_vertex_at_coords);
+
+	// _vertex_at_coords = this.vertecies.filter(function(_vertex){
+	// 	return (Math.pow((_coords.x - _vertex.coords.x_abs),2) + Math.pow((_coords.y - _vertex.coords.y_abs),2)) < Math.pow(_vertex.size,2);
+	// 	//return coords >= (_vertex.coords == _coords;
+	// });
 	return _vertex_at_coords[0];
 }
 
+
 WeightedGraph.prototype.getAdjacentVertecies = function(_vertex)
 {
-	//find all edges in _graph.edges that have this.id as source_vertex
-	_edges = this.edges.filter(function(_edge){
-		return _vertex.id == _edge.source_vertex_id;
-	}, this);
-
 	_adjacent_vertecies = [];
 
-	_edges.forEach(function(_edge){
-		_adjacent_vertex = this.vertecies.filter(function(_vertex){
-			return _vertex.id == _edge.dest_vertex_id;
-		},this);	
-		_adjacent_vertecies.push(_adjacent_vertex[0]);
+	this.edges.forEach(function(_edge){
+		if ((_vertex.id == _edge.source_vertex_id) || (_vertex.id == _edge.dest_vertex_id))
+		{
+			_adjacent_vertecies.push(this.getVertexById(_edge.source_vertex_id));
+			_adjacent_vertecies.push(this.getVertexById(_edge.dest_vertex_id));
+		}
 	},this);
 	
 	return _adjacent_vertecies;
@@ -46,6 +52,33 @@ WeightedGraph.prototype.getEdges = function(_vertex)
 	return _edges;
 }
 
+WeightedGraph.prototype.getIncommingEdges = function(_vertex)
+{
+	_edges = [];
+
+	this.edges.forEach(function(_edge){
+		if (_vertex.id == _edge.source_vertex_id)
+		{
+			if(this.getVertexById(_edge.dest_vertex_id).coords.x <= _vertex.coords.x)
+			{
+				_edges.push(_edge);	
+			}	
+		}
+
+		if (_vertex.id == _edge.dest_vertex_id)
+		{
+			if(this.getVertexById(_edge.source_vertex_id).coords.x <= _vertex.coords.x)
+			{
+				_edges.push(_edge);	
+			}	
+		}
+	}, this);
+
+
+
+	return _edges;
+}
+
 WeightedGraph.prototype.depth_first_search = function(_start_vertex, _visited, _callback)
 {
 	_visited.push(_start_vertex);
@@ -53,7 +86,10 @@ WeightedGraph.prototype.depth_first_search = function(_start_vertex, _visited, _
 	this.getAdjacentVertecies(_start_vertex).forEach(function(_adjacent_vertex){
 		if(!~_visited.indexOf(_adjacent_vertex))
 		{
-			this.depth_first_search(_adjacent_vertex,_visited,_callback);
+			if(_adjacent_vertex.coords.x >= _start_vertex.coords.x)
+			{
+				this.depth_first_search(_adjacent_vertex,_visited,_callback);
+			}
 		}
 	},this);	
 }
@@ -170,26 +206,52 @@ WeightedGraph.prototype.print = function()
 
 WeightedGraph.prototype.drawVertex = function(_vertex)
 {
-	this.draw_settings.context.beginPath();
 	//this.draw_settings.context.arc(_vertex.coords.x,_vertex.coords.y,_vertex.size,0,2*Math.PI);
-	_font_size = window.innerHeight / (this.vertex_count_at_depth[_vertex.coords.x] + 1)
+	_font_size = (window.innerHeight) / (this.vertex_count_at_depth[_vertex.coords.x] + 1)
 	console.log(_vertex.coords.x);
-	if(_font_size > 20)
+	if(_font_size > 16)
 	{
-		_font_size = 20;
+		_font_size = 16;
 	}
-	this.draw_settings.context.font = _font_size + "px Arial"
-	this.draw_settings.context.fillStyle = _vertex.color;//_vertex_data_class.color;
-	this.draw_settings.context.fillText(_vertex.channel_data.title,_vertex.coords.x_abs,_vertex.coords.y_abs);
+
+	
 	// console.log(_vertex.color);
-	// this.draw_settings.context.fillStyle = _vertex.color;
+	
+	
+	this.draw_settings.context.beginPath();
+	this.draw_settings.context.strokeStyle = "white";
+	this.draw_settings.context.fillStyle = _vertex.color;
+	this.draw_settings.context.lineWidth = _vertex.lineWidth;
+	this.draw_settings.context.rect(_vertex.coords.x_abs,_vertex.coords.y_abs - (_font_size / 2),(((_font_size /1000) * 583) * this.max_vertex_title_size_at_depth[_vertex.coords.x]),_font_size);
+	//_vertex.coords.x_abs = _vertex.coords.x_abs + ((_font_size /1000) * 583) * this.max_vertex_title_size_at_depth[_vertex.coords.x];
+	_vertex.size = ((_font_size /1000) * 583) * this.max_vertex_title_size_at_depth[_vertex.coords.x];
+	_vertex.font_size = _font_size;
+	this.draw_settings.context.fill();
+	
+	this.draw_settings.context.lineWidth = 0;
+
+	this.draw_settings.context.beginPath();
+	this.draw_settings.context.font = _font_size + "px Arial"
+	this.draw_settings.context.fillStyle = "black";
+	this.draw_settings.context.fillText(_vertex.channel_data.title,_vertex.coords.x_abs,_vertex.coords.y_abs + (_font_size/2) - 2.5);
 	this.draw_settings.context.fill();
 }
 
 WeightedGraph.prototype.drawEdge = function(_edge)
 {
-	_source_vertex = this.vertecies.filter(function(_vertex){return _vertex.id == _edge.source_vertex_id},this)[0];
-	_dest_vertex = this.vertecies.filter(function(_vertex){return _vertex.id == _edge.dest_vertex_id},this)[0];
+	_vertex_1 = this.getVertexById(_edge.source_vertex_id);
+	_vertex_2 = this.getVertexById(_edge.dest_vertex_id);
+
+	if(_vertex_1.coords.x >= _vertex_2.coords.x)
+	{
+		_source_vertex = _vertex_2
+		_dest_vertex =  _vertex_1
+	}
+	else
+	{
+		_source_vertex = _vertex_1
+		_dest_vertex =  _vertex_2	
+	}
 
 	_source_vertex_edges = this.getEdges(_source_vertex);
 	_edge_number = _source_vertex_edges.indexOf(_edge);
@@ -199,33 +261,58 @@ WeightedGraph.prototype.drawEdge = function(_edge)
 
 	this.draw_settings.context.beginPath();
 	//console.log(_source_vertex.coords.x);
-	this.draw_settings.context.moveTo(_source_vertex.coords.x_abs + _source_vertex.size,_source_vertex.coords.y_abs);
 	this.draw_settings.context.strokeStyle = _edge.color;
 	_bezier_offset = {"x": 0, "y": 0};
 
-	if(_edge_number < Math.floor(_midpoint,0)){
-		//console.log("smaller");
-		_bezier_offset.x = -this.vertex_offset/2;
-		this.draw_settings.context.bezierCurveTo(_source_vertex.coords.x_abs+_source_vertex.size,
-					_source_vertex.coords.y_abs,
-					_dest_vertex.coords.x_abs + _bezier_offset.x,
-					_dest_vertex.coords.y_abs,
-					_dest_vertex.coords.x_abs-_dest_vertex.size,
-					_dest_vertex.coords.y_abs);
-		this.draw_settings.context.stroke();
-	} else if(_edge_number > Math.floor(_midpoint,0)){
-		//console.log("bigger");
-		_bezier_offset.x = -this.vertex_offset/2;
-		this.draw_settings.context.bezierCurveTo(_source_vertex.coords.x_abs+_source_vertex.size,
-					_source_vertex.coords.y_abs,
-					_dest_vertex.coords.x_abs + _bezier_offset.x,
-					_dest_vertex.coords.y_abs,
-					_dest_vertex.coords.x_abs - _dest_vertex.size,
-					_dest_vertex.coords.y_abs);
-		this.draw_settings.context.stroke();
-	} else if(_edge_number == Math.floor(_midpoint,0)){
-		this.draw_settings.context.lineTo(_dest_vertex.coords.x_abs-_dest_vertex.size,_dest_vertex.coords.y_abs);
-		this.draw_settings.context.stroke();
+	if (_source_vertex.coords.x == _dest_vertex.coords.x)
+	{
+		_bezier_offset.x = -this.vertex_offset/1.5;
+		this.draw_settings.context.moveTo(_source_vertex.coords.x_abs,_source_vertex.coords.y_abs);
+		
+		this.draw_settings.context.bezierCurveTo(
+						_source_vertex.coords.x_abs + _bezier_offset.x,
+						_source_vertex.coords.y_abs,
+						_dest_vertex.coords.x_abs + _bezier_offset.x,
+						_dest_vertex.coords.y_abs,
+						_dest_vertex.coords.x_abs,
+						_dest_vertex.coords.y_abs);
+
+		this.draw_settings.context.stroke();	
+	}
+	else
+	{
+		if(_edge_number < Math.floor(_midpoint,0))
+		{
+			//console.log("smaller");
+			this.draw_settings.context.moveTo(_source_vertex.coords.x_abs + _source_vertex.size,_source_vertex.coords.y_abs);
+			_bezier_offset.x = -this.vertex_offset/2;
+			this.draw_settings.context.bezierCurveTo(_source_vertex.coords.x_abs+_source_vertex.size,
+						_source_vertex.coords.y_abs,
+						_dest_vertex.coords.x_abs + _bezier_offset.x,
+						_dest_vertex.coords.y_abs,
+						_dest_vertex.coords.x_abs,
+						_dest_vertex.coords.y_abs);
+			this.draw_settings.context.stroke();
+		} 
+		else if(_edge_number > Math.floor(_midpoint,0))
+		{
+			//console.log("bigger");
+			this.draw_settings.context.moveTo(_source_vertex.coords.x_abs + _source_vertex.size,_source_vertex.coords.y_abs);
+			_bezier_offset.x = -this.vertex_offset/2;
+			this.draw_settings.context.bezierCurveTo(_source_vertex.coords.x_abs+_source_vertex.size,
+						_source_vertex.coords.y_abs,
+						_dest_vertex.coords.x_abs + _bezier_offset.x,
+						_dest_vertex.coords.y_abs,
+						_dest_vertex.coords.x_abs,
+						_dest_vertex.coords.y_abs);
+			this.draw_settings.context.stroke();
+		} 
+		else if(_edge_number == Math.floor(_midpoint,0))
+		{
+			this.draw_settings.context.moveTo(_source_vertex.coords.x_abs + _source_vertex.size,_source_vertex.coords.y_abs);
+			this.draw_settings.context.lineTo(_dest_vertex.coords.x_abs,_dest_vertex.coords.y_abs);
+			this.draw_settings.context.stroke();
+		} 
 	}
 	this.draw_settings.context.strokeStyle = 'black';
 }
@@ -237,18 +324,45 @@ WeightedGraph.prototype.setDrawSettings = function(_draw_settings)
 
 WeightedGraph.prototype.calcVertexCoords = function()
 {
+
+	_font_size = (window.innerHeight) / (this.vertex_count_at_depth[this.depth] + 1)
+	if(_font_size > 16)
+	{
+		_font_size = 16;
+	}
 	this.vertecies.forEach(function(_vertex){
+		if(this.max_vertex_title_size_at_depth[_vertex.coords.x] == null)
+		{
+			this.max_vertex_title_size_at_depth[_vertex.coords.x] = _vertex.channel_data.title.length;
+		}
+		else if (_vertex.channel_data.title.length > this.max_vertex_title_size_at_depth[_vertex.coords.x])
+		{
+			this.max_vertex_title_size_at_depth[_vertex.coords.x] = _vertex.channel_data.title.length;
+		}
+	},this);
+	this.vertecies.forEach(function(_vertex){
+
 		_depth_vertex_count = this.vertex_count_at_depth[_vertex.coords.x];
-		_vertex.coords.x_abs = (window.innerWidth / (this.depth * 2)) * (_vertex.coords.x + 1);
-		_init_y_offset = window.innerHeight / (_depth_vertex_count * 2);
-		_vertex.coords.y_abs = _init_y_offset + (_vertex.coords.y * (_init_y_offset * 2));
+		console.log("afd" + ((_vertex.font_size /1000) * 583));
+		_init_x_offset = ((window.innerWidth - this.max_vertex_title_size_at_depth[this.depth] * ((_font_size /1000) * 583))) / (this.depth*2) ;
+		_vertex.coords.x_abs = (_vertex.coords.x * (_init_x_offset * 2));
+		_init_y_offset = ((window.innerHeight) / (_depth_vertex_count *2) );
+		_vertex.coords.y_abs = _init_y_offset + (_vertex.coords.y * (_init_y_offset *2));
+
 		_vertex.size = 10;
 	},this);
+
+	console.log(this.max_vertex_title_size_at_depth)
 }
 
 WeightedGraph.prototype.draw = function()
 {
 	console.log("[start]WeightedGraph.prototype.draw");
+
+	this.vertecies.forEach(function(_vertex){
+		this.drawVertex(_vertex);
+	},this);
+
 	this.edges.forEach(function(_edge){
 		_dest_vertex = this.getVertexById(_edge.dest_vertex_id);
 		if(!_dest_vertex.highlight_state)
@@ -257,9 +371,7 @@ WeightedGraph.prototype.draw = function()
 		}
 	},this);
 
-	this.vertecies.forEach(function(_vertex){
-		this.drawVertex(_vertex);
-	},this);
+	
 
 	this.edges.forEach(function(_edge){
 		_dest_vertex = this.getVertexById(_edge.dest_vertex_id);
