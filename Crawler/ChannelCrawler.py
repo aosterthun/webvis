@@ -142,6 +142,13 @@ def crawl(SEED = None, DEPTH = 1):
 def main():
     print("Starting...")
 
+    if len(sys.argv) != 2:
+        print("Usage: " + sys.argv[0] + " request_path.json")
+        exit()
+
+    filepath = str(sys.argv[1])
+
+
     if True: #maybe you want to update everything
         for filename in os.listdir(CHANNEL_FOLDER):
             if filename.endswith(".json"):
@@ -157,7 +164,7 @@ def main():
 
 
     #read in request
-    request = load_json("../request.json")
+    request = load_json(filepath)
     request_id = str(request["request_id"])
     depth = int(request["depth"])
     seed = []
