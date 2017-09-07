@@ -116,16 +116,20 @@ def cluster_policy(SEED, DEPTH):
 
                 if C_P_INFO: print("Created vertex for channel " + vertex["channel_data"]["title"])
 
-                if current_depth != DEPTH:
-                    for linked_id in linked_channels[current_id]:
-                        if linked_id not in traversed_channels_ids:
+                for linked_id in linked_channels[current_id]:
+                    if linked_id not in traversed_channels_ids:
 
-                            if get_channel(linked_id) != None:
+                        if get_channel(linked_id) != None:
 
+                            edge_out_of_max_depth = False
+                            if current_depth != DEPTH:
                                 if linked_id not in next_ids and linked_id not in current_channel_ids:
                                     next_ids.append(linked_id)
+                            else:
+                                if linked_id not in current_channel_ids:
+                                    edge_out_of_max_depth = True
 
-
+                            if not edge_out_of_max_depth:
                                 #this could be enhanced by only searching
                                 #in the current column edges
                                 redundant_edge = False
@@ -146,13 +150,14 @@ def cluster_policy(SEED, DEPTH):
                                     edge["color"] = "white"
                                     graph["edges"].append(edge)
                                 else:
-                                    print("Redundant edge")
-                                    print(current_id)
-                                    print(linked_id)
+                                    pass
+                                    #print("Redundant edge")
+                                    #print(current_id)
+                                    #print(linked_id)
                                     
                                     if C_P_INFO: print("Created edge: " + vertex["channel_data"]["title"] + " -> " + get_channel(linked_id)["title"])
-                            else:
-                                print("No data for id " + linked_id)
+                        else:
+                            print("No data for id " + linked_id)
                     #end of linked_id loop
 
             y_count += 1
@@ -238,12 +243,12 @@ def main():
     graph = generate_graph(POLICY = "cluster_policy", SEED = seed, DEPTH = depth)
 
     print("Analyzing graph")
-    #analytics = analyze_graph(graph)
+    analytics = analyze_graph(graph)
 
     file = dict()
-    #file["request"] = request
+    file["request"] = request
     file["graph"] = graph
-    #file["analytics"] = analytics
+    file["analytics"] = analytics
 
     print("Saving graph")
     save_json(file, "response_" + request_id + ".json")
