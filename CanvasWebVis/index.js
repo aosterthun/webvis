@@ -49,14 +49,14 @@ $(window).on("load", function(){
 	_show_settings = true;
 	$('.container').click(function(){
 		if(_show_settings){
-			$(this).css("top","50px");
-			$("#settings").css("margin-top","0px");
+			$(this).css("top","100px");
+			$("#settings").css("top","0px");
 			_show_settings = false;
 		}
 		else
 		{
-			$(this).css("top","10px");
-			$("#settings").css("margin-top","-40px");
+			$(this).css("top","0px");
+			$("#settings").css("top","-100px");
 			_show_settings = true;
 		}
 	});
@@ -70,9 +70,15 @@ $(window).on("load", function(){
 	//_markers = [{"id": "marker_1", "color": $("#marker_1").attr("color")},{"id": "marker_2", "color": $("#marker_2").attr("color")}]
 	_markers_to_channel = [{"id": "marker_1", "channel_id": null},{"id": "marker_2", "channel_id": null}];
 	_selected_marker_id = null;
+	_selected_depth = 3;
 
 	$("#marker_group :input").change(function(){
 		_selected_marker_id = $(this).attr("id");
+	});
+
+	$("#search_depth_div input").change(function(){
+		_selected_depth = parseInt($(this).val());
+		console.log("_selected_depth:" + _selected_depth);
 	});
 
 	_visited = null;
@@ -88,7 +94,7 @@ $(window).on("load", function(){
 			if(_visited == null)
 			{
 				c.clearRect(0,0,window.innerWidth,window.innerHeight);
-				_visited = _graph.depth_search(_vertex,$("#search_depth").val(), true);
+				_visited = _graph.depth_search(_vertex,_selected_depth, true);
 
 				_visited.forEach(function(_id){
 					_start_vertex = _graph.getVertexById(_id);
@@ -99,7 +105,7 @@ $(window).on("load", function(){
 				_visited.forEach(function(_id){
 					_start_vertex = _graph.getVertexById(_id);
 					//console.log(_start_vertex);
-					if(($("#search_depth").val() - 1) != _start_vertex.vis_info.found_at_depth)
+					if((_selected_depth - 1) != _start_vertex.vis_info.found_at_depth)
 					{
 						console.log(_start_vertex.vis_info.found_at_depth);
 						_graph.getOutgoingEdges(_start_vertex).forEach(function(_edge){
@@ -127,7 +133,7 @@ $(window).on("load", function(){
 						_graph.getVertexById(_vertex).stroke_color = "#C1C1C1";	
 					}
 				},this);
-				if($("#search_depth").val() != 0)
+				if(_selected_depth != 0)
 				{
 					_visited.forEach(function(_id){
 						_start_vertex = _graph.getVertexById(_id);
@@ -198,7 +204,7 @@ $(window).on("load", function(){
 					_marker.channel_id = _vertex.id;
 				}
 				
-				_visited = _graph.depth_search(_vertex,$("#search_depth").val(), true);
+				_visited = _graph.depth_search(_vertex,_selected_depth, true);
 				_color =  $("#"+_selected_marker_id).attr("color");
 				_visited.forEach(function(_id){
 					//_graph.getVertexById(_id).color = "yellow";
@@ -218,7 +224,7 @@ $(window).on("load", function(){
 
 					if($("#search_depth").val() != 0)
 					{
-						_visited = _graph.depth_search(_vertex,$("#search_depth").val(),true);
+						_visited = _graph.depth_search(_vertex,_selected_depth,true);
 						_visited.forEach(function(_id){
 							_graph.getIncommingEdges(_start_vertex).forEach(function(_edge){
 								if(_graph.getVertexById(_edge.source_vertex_id).vis_info.highlight_state && _graph.getVertexById(_edge.dest_vertex_id).vis_info.highlight_state)
