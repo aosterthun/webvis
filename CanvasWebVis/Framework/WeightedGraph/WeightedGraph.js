@@ -16,12 +16,12 @@ function WeightedGraph(_json_graph){
 			"highlight_state": false,
 			"found_at_depth": null
 		}
-		_vertex.color = "#C1C1C1";
-		_vertex.stroke_color = "#C1C1C1";
+		_vertex.color = COLOR_VERTEX;
+		_vertex.stroke_color = COLOR_VERTEX;
 	});
 
 	this.edges.forEach(function(_edge){
-		_edge.color = "#C1C1C1";
+		_edge.color = COLOR_EDGE;
 	});
 }
 
@@ -121,13 +121,13 @@ WeightedGraph.prototype.getOutgoingEdges = function(_vertex)
 WeightedGraph.prototype.reset = function()
 {
 	this.vertecies.forEach(function(_vertex){
-		_vertex.color = this.default_color;
-		_vertex.stroke_color = this.default_color;
+		_vertex.color = COLOR_VERTEX;
+		_vertex.stroke_color = COLOR_VERTEX;
 		_vertex.vis_info.highlight_state = false;
 	},this);
 
 	this.edges.forEach(function(_edge){
-		_edge.color = this.default_color;
+		_edge.color = COLOR_EDGE;
 	},this);
 }
 
@@ -196,7 +196,7 @@ WeightedGraph.prototype.drawVertex = function(_vertex)
 	_vertex.size = ((_font_size /1000) * 583) * this.max_vertex_title_size_at_depth[_vertex.coords.x];
 	_vertex.font_size = _font_size;
 	this.draw_settings.context.fill();
-	if(_vertex.stroke_color != this.default_color)
+	if(_vertex.stroke_color != COLOR_VERTEX)
 	{
 		this.draw_settings.context.lineWidth = 3;
 		this.draw_settings.context.stroke();
