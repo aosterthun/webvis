@@ -122,6 +122,7 @@ WeightedGraph.prototype.reset = function()
 {
 	this.vertecies.forEach(function(_vertex){
 		_vertex.color = this.default_color;
+		_vertex.stroke_color = this.default_color;
 		_vertex.vis_info.highlight_state = false;
 	},this);
 
