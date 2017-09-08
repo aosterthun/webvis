@@ -1,14 +1,55 @@
 <html>
 <head>
 	<title></title>
+	<script src="https://use.fontawesome.com/1bd6643530.js"></script>
 	<script type="text/javascript" src="Framework/jQuery.js"></script>
+	<script type="text/javascript" src="Framework/bootstrap.min.js"></script>
 	<script type="text/javascript" src="Framework/WeightedGraph/Edge.js"></script>
 	<script type="text/javascript" src="Framework/WeightedGraph/Vertex.js"></script>
 	<script type="text/javascript" src="Framework/WeightedGraph/WeightedGraph.js"></script>
 	<script type="text/javascript" src="index.js"></script>
+	<link rel="stylesheet" type="text/css" href="Framework/bootstrap.css">
+	<style type="text/css">
+	#settings {
+		margin-top: -40px;
+		height: 40px;
+		background-color: #eee8d5;
+		transition: margin-top 1s;
+	}
+
+	.container {
+		display: block;
+		position: absolute;
+		top:10px;
+		cursor: pointer;
+		transition: top 1s;
+	}
+
+	.bar1, .bar2, .bar3 {
+		width: 35px;
+		height: 5px;
+		background-color: #268bd2;
+		margin: 6px 0;
+	}
+	</style>
 </head>
 <body style="margin: 0;">
-	<input id="search_depth" type="number" min="0" max="100" value="0"> 
-	<canvas id ="graph" style="background-color: black;"></canvas>
+	<div class="container">
+		<div class="bar1"></div>
+		<div class="bar2"></div>
+		<div class="bar3"></div>
+	</div>
+	<div id="settings" class="">
+		<input id="search_depth" type="number" min="0" max="100" value="3"> 
+		<div id="marker_group" class="btn-group" data-toggle="buttons">
+			<label id="marker_1_label" class="btn btn-primary">
+				<input type="radio" name="options" id="marker_1" autocomplete="off" stroke_color="yellow" color="#859900"> <i class="fa fa-user-plus" aria-hidden="true"></i>
+			</label>
+			<label id="marker_2_label" class="btn btn-secondary">
+				<input type="radio" name="options" id="marker_2" autocomplete="off" stroke_color="green" color="#dc322f"> <i class="fa fa-user-plus" aria-hidden="true"></i>
+			</label>
+		</div>
+	</div>
+	<canvas id ="graph" style="background-color: #002b36;"></canvas>
 </body>
 </html>

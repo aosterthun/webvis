@@ -9,13 +9,15 @@ function WeightedGraph(_json_graph){
 	this.vertex_count_at_depth = _json_graph.vertex_count_at_depth;
 	this.max_vertex_title_size_at_depth = [];
 	this.vertex_rect_padding = 0;
+	this.default_color = "#C1C1C1";
 
 	this.vertecies.forEach(function(_vertex){
-		_vertex.highlight_state = false;
-	});
-
-	this.vertecies.forEach(function(_vertex){
+		_vertex.vis_info = {
+			"highlight_state": false,
+			"found_at_depth": null
+		}
 		_vertex.color = "#C1C1C1";
+		_vertex.stroke_color = "#C1C1C1";
 	});
 
 	this.edges.forEach(function(_edge){
@@ -88,135 +90,77 @@ WeightedGraph.prototype.getIncommingEdges = function(_vertex)
 		}
 	}, this);
 
+	return _edges;
+}
 
+WeightedGraph.prototype.getOutgoingEdges = function(_vertex)
+{
+	_edges = [];
+
+	this.edges.forEach(function(_edge){
+		if (_vertex.id == _edge.source_vertex_id)
+		{
+			if(this.getVertexById(_edge.dest_vertex_id).coords.x >= _vertex.coords.x)
+			{
+				_edges.push(_edge);	
+			}	
+		}
+
+		if (_vertex.id == _edge.dest_vertex_id)
+		{
+			if(this.getVertexById(_edge.source_vertex_id).coords.x >= _vertex.coords.x)
+			{
+				_edges.push(_edge);	
+			}	
+		}
+	}, this);
 
 	return _edges;
 }
 
-WeightedGraph.prototype.depth_search = function(_start_vertex,_depth)
+WeightedGraph.prototype.reset = function()
+{
+	this.vertecies.forEach(function(_vertex){
+		_vertex.color = this.default_color;
+		_vertex.vis_info.highlight_state = false;
+	},this);
+
+	this.edges.forEach(function(_edge){
+		_edge.color = this.default_color;
+	},this);
+}
+
+WeightedGraph.prototype.depth_search = function(_start_vertex,_depth,_from_start)
 {
 	_current_depth = 0;
 	_visited = [];
 
 	_current = [_start_vertex.id];
 	while(_current_depth < _depth){
-		console.log("depth: " + _current_depth);
+		//console.log("depth: " + _current_depth);
 		_next = [];
 		_current.forEach(function(_id){
 			if(!~_visited.indexOf(_id))
 			{
 				_visited.push(_id);
-				_adjacent_vertices = this.getAdjacentVertecies(this.getVertexById(_id));
-				console.log("Channel: " + this.getVertexById(_id).channel_data.title);
-				console.log("Adj Count: " + _adjacent_vertices.length);
+				vertex = this.getVertexById(_id);
+				vertex.vis_info.found_at_depth = _current_depth;
+				_adjacent_vertices = this.getAdjacentVertecies(vertex);
+
+				if(_from_start == true){
+					_adjacent_vertices = _adjacent_vertices.filter(function(adjacent_vertex){
+						return adjacent_vertex.coords.x >= vertex.coords.x;
+					},this);
+				}
+
 				_next = _next.concat(_adjacent_vertices.map(function(_adjacent_vertex){return _adjacent_vertex.id})
 											.filter(function(_id){ return (!~_visited.indexOf(_id))}));
-
-				console.log("Next post filtered: " + _next.length);
-				//_visited = _visited.concat(_next);
-				//console.log(_visited);
 			}
 		},this);
 		_current = _next;
 		_current_depth++;
-		//console.log("depth: " + _current_depth);	
 	}
 	return _visited;
-}
-
-WeightedGraph.prototype.depth_first_search = function(_start_vertex, _visited,_recursions, _callback)
-{
-	if(_recursions >= 0)
-	{
-		console.log("start: " + _start_vertex.channel_data.title);
-		_current = [];
-		_visited.push(_start_vertex);
-		_callback(_start_vertex);
-		this.getAdjacentVertecies(_start_vertex).forEach(function(_adjacent_vertex){
-			if(!~_visited.indexOf(_adjacent_vertex))
-			{
-				if(_adjacent_vertex.coords.x >= _start_vertex.coords.x)
-				{
-					console.log("adj: " + _adjacent_vertex.channel_data.title)
-					_current.push(_adjacent_vertex);
-					_visited.push(_adjacent_vertex);
-				}
-			}
-		},this);
-		
-		
-		_current.forEach(function(_vertex){
-			if(_start_vertex.coords.x != _vertex.coords.x)
-			{
-				this.depth_first_search(_vertex,_visited,_recursions--,_callback);	
-			}
-			else
-			{
-				this.depth_first_search(_vertex,_visited,_recursions,_callback);	
-			}
-		},this);	
-		
-	}
-}
-
-WeightedGraph.prototype.sortByNumberOfIncomingEdges = function()
-{
-	// _edgeIncomeCount = {};
-	// _edgeIncomeCount = [];
-	// this.edges.forEach(function(_edge){
-
-	// });
-	// this.edges.forEach(function(_edge){
-	// 	if (!(_edge.dest_vertex_id in _edgeIncomeCount))
-	// 	{
-	// 		_edgeIncomeCount[_edge.dest_vertex_id] = 0;
-	// 	}
-	// 	else
-	// 	{
-	// 		_edgeIncomeCount[_edge.dest_vertex_id] += 1;
-	// 	}
-	// });
-
-	//console.log(_edgeIncomeCount);
-	//Object.keys(_edgeIncomeCount).sort();
-	//console.log(_edgeIncomeCount);
-	//_edgeIncomeCount.sort();
-	//console.log(_edgeIncomeCount);
-}
-
-WeightedGraph.prototype.enable_abo_count_vis = function(_start_vertex,_visited)
-{
-	
-	_start_vertex.color = "red";
-	_start_vertex.highlight_state = true;
-	this.getEdges(_start_vertex).forEach(function(_edge){
-		_edge.color = "red";
-	});
-	_visited.push(_start_vertex);
-	this.getAdjacentVertecies(_start_vertex).forEach(function(_adjacent_vertex){
-		if(!~_visited.indexOf(_adjacent_vertex))
-		{
-			this.enable_abo_count_vis(_adjacent_vertex,_visited);
-		}
-	},this);	
-}
-
-WeightedGraph.prototype.disable_abo_count_vis = function(_start_vertex,_visited)
-{
-	
-	_start_vertex.color = "white";
-	_start_vertex.highlight_state = false;
-	this.getEdges(_start_vertex).forEach(function(_edge){
-		_edge.color = "white";
-	});
-	_visited.push(_start_vertex);
-	this.getAdjacentVertecies(_start_vertex).forEach(function(_adjacent_vertex){
-		if(!~_visited.indexOf(_adjacent_vertex))
-		{
-			console.log("test");
-			this.disable_abo_count_vis(_adjacent_vertex,_visited);
-		}
-	},this);	
 }
 
 WeightedGraph.prototype.getVertexById = function(_vertex_id)
@@ -234,64 +178,31 @@ WeightedGraph.prototype.getGraphAsAdjacencyList = function()
 	return _start_vertecies;
 }
 
-WeightedGraph.prototype.setVertexDepth = function(_vertex,_depth)
-{
-	_vertex.depth = _depth;
-	_vertex.coords.x = this.vertex_offset * _depth;
-}
-
-WeightedGraph.prototype.addVertex = function(_vertex,_depth)
-{
-	this.setVertexDepth(_vertex,_depth);
-	if (_depth > this.max_depth)
-	{
-		this.max_depth = _depth;
-	}
-	this.vertecies.push(_vertex);
-}
-
-WeightedGraph.prototype.addEdge = function(_edge)
-{
-	this.edges.push(_edge);
-}
-
-WeightedGraph.prototype.print = function()
-{
-	this.vertecies.forEach(function(_vertex){
-		_vertecies = this.getAdjacentVertecies(_vertex);
-
-		var _dest_vertex_string = "";
-		_vertecies.forEach(function(_vertex){
-			_dest_vertex_string += _vertex.id + " | ";
-		});
-
-		console.log(_vertex.id + " -> " + _dest_vertex_string);
-	}, this);
-}
-
 WeightedGraph.prototype.drawVertex = function(_vertex)
 {
-	//this.draw_settings.context.arc(_vertex.coords.x,_vertex.coords.y,_vertex.size,0,2*Math.PI);
-	_font_size = (window.innerHeight) / (this.vertex_count_at_depth[_vertex.coords.x] + 1)
-	//console.log(_vertex.coords.x);
+	
+	_font_size = (window.innerHeight) / (this.vertex_count_at_depth[_vertex.coords.x] + 1);
 	if(_font_size > 16)
 	{
 		_font_size = 16;
 	}
 
-	
-	// console.log(_vertex.color);
-	
-	
 	this.draw_settings.context.beginPath();
-	this.draw_settings.context.strokeStyle = "white";
+	this.draw_settings.context.strokeStyle = _vertex.stroke_color;
 	this.draw_settings.context.fillStyle = _vertex.color;
 	this.draw_settings.context.lineWidth = _vertex.lineWidth;
 	this.draw_settings.context.rect(_vertex.coords.x_abs,_vertex.coords.y_abs - (_font_size / 2),(((_font_size /1000) * 583) * this.max_vertex_title_size_at_depth[_vertex.coords.x]),_font_size);
-	//_vertex.coords.x_abs = _vertex.coords.x_abs + ((_font_size /1000) * 583) * this.max_vertex_title_size_at_depth[_vertex.coords.x];
 	_vertex.size = ((_font_size /1000) * 583) * this.max_vertex_title_size_at_depth[_vertex.coords.x];
 	_vertex.font_size = _font_size;
 	this.draw_settings.context.fill();
+	if(_vertex.stroke_color != this.default_color)
+	{
+		this.draw_settings.context.lineWidth = 3;
+		this.draw_settings.context.stroke();
+		this.draw_settings.context.lineWidth = 1;
+	}
+	
+
 	
 	this.draw_settings.context.lineWidth = 0;
 
@@ -392,10 +303,23 @@ WeightedGraph.prototype.drawEdge = function(_edge)
 
 	var my_gradient= this.draw_settings.context.createLinearGradient(_source_vertex.coords.x_abs,_source_vertex.coords.y_abs, _dest_vertex.coords.x_abs,_dest_vertex.coords.y_abs);
 
-	//my_gradient.addColorStop(0,_source_vertex.color);
-	my_gradient.addColorStop(0,_edge.color);
-	my_gradient.addColorStop(1,_edge.color);
-	
+	gradient = true;
+
+	if(gradient){
+
+		if(_source_vertex.vis_info.highlight_state && _dest_vertex.vis_info.highlight_state){
+			my_gradient.addColorStop(0,_source_vertex.color);
+			my_gradient.addColorStop(1,_dest_vertex.color);
+		}
+		else{
+			my_gradient.addColorStop(0,_edge.color);
+			my_gradient.addColorStop(1,_edge.color);
+		}
+	}else{
+		my_gradient.addColorStop(0,_source_vertex.color);
+		my_gradient.addColorStop(0,_edge.color);
+	}
+
 	this.draw_settings.context.strokeStyle = my_gradient;
 	this.draw_settings.context.stroke();
 	this.draw_settings.context.strokeStyle = 'black';
