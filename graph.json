@@ -1,0 +1,38 @@
+{
+	"id": int,
+	"vertecies": [
+		{
+			"id": int,
+			"coords": {"x": int, "y" : int}
+			"print": 
+		},
+		{
+			"id": int,
+			"coords": {"x": int, "y" : int}
+		},
+		{
+			"id": int,
+			"coords": {"x": int, "y" : int}
+		},
+		{
+			"id": int,
+			"coords": {"x": int, "y" : int}
+		}
+
+	],
+	"edges": [
+		{
+			"id": int,
+			"source_vertex": int,
+			"dest_vertex": int	
+		}
+	]
+}
+
+_vertecies = _graph.vertecies
+
+_vertecies[0].prototype.print  = function(){
+
+}
+
+https://en.wikipedia.org/wiki/NoSQL 
