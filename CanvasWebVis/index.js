@@ -85,7 +85,12 @@ $(window).on("load", function(){
 
 	$("#search_depth_div input").change(function(){
 		_selected_depth = parseInt($(this).val());
-		console.log("_selected_depth:" + _selected_depth);
+		if($(this).attr("id") == "search_depth")
+		{
+			$("#search_depth_div label").each(function(_index){
+			$(this).removeClass("active");
+		});
+		}
 	});
 
 	_visited = null;
