@@ -34,5 +34,5 @@
 - Seperation of data gathering and visualization
   - Server-Client layout
 - Ground up implementation
-  + Technical curiosity
-  - Slow data structure algorithms 
+  :turtle: Technical curiosity 
+  :mag: Slow data structure algorithms 
