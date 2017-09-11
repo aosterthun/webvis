@@ -33,5 +33,6 @@
 - In- and Inter-Layer cluster arrangement
 - Seperation of data gathering and visualization
   - Server-Client layout
-- No visualization framework
+- Ground up implementation
+  + Technical curiosity
   - Slow data structure algorithms 
