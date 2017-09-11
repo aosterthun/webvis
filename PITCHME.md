@@ -28,7 +28,10 @@
 
 ---
 
-# Technical Challenges
+## Design Challenges
 
-- asdf
-- asdf
+- In- and Inter-Layer cluster arrangement
+- Seperation of data gathering and visualization
+  - Server-Client layout
+- No visualization framework
+  - Slow data structure algorithms 
