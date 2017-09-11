@@ -1,24 +1,34 @@
-# Ich bin ein toller Titel
-
-- Penis
-
+# YouTube Network Analyzer
 ---
 
-## Schöne Überschrift
+## Concept
 
-1. foo
-2. bar
+- YouTube Channels 
+- YouTube Featured Channels (Meta Data)
+- Graph structure
+- Horizontal graph layout 
+- Too many links
+- More meaningfull base data
+  - Search for double links
+  - Implicit shortest path between YouTube Channels
 
 +++
 
-## Schöne Überschrift
+## Visualization Goals
 
-1. bar
-2. foo
+- Discover new YouTube Channels based on user preferences
+- User preferences:
+  - YouTube Channel as seed for data crawling
+  - Marking of interesting YouTube Channels (Clustering -> Technical Challenges)
+  - Depth threshold for graph search
 
 ---
 
-# Ähhhhhmm
+# Demo
+
+---
+
+# Technical Challenges
 
 - asdf
 - asdf
