@@ -34,5 +34,7 @@
 - Seperation of data gathering and visualization
   - Server-Client layout
 - Ground up implementation
-  - 🔍 Technical curiosity 
-  - 🐢 Slow data structure algorithms 
+  <ul style="list-style: none;">
+    <li>🔍 Technical curiosity </li>
+    <li>🐢 Slow data structure algorithms </li>
+  </ul>
