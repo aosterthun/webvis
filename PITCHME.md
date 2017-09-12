@@ -1,21 +1,30 @@
 # YouTube Network Analyzer
+
+Note:
+Why?
+ Self-interest in Youtube. Channels and Community.
+ API accessible. Deriving data from it seemed fun.
+
 ---
 ## Idea
 
 <img src="assets/HoB.jpg" style="border:none;"></img>
 
 Note:
- - YouTube Channels 
- - YouTube Featured Channels (Meta Data)
+ - Channels can feature (up to 100) channels.
+ - Featuring Reasons: Friendship, Support, Professional-Networks
 
 +++
 
 <img src="assets/links.jpg" style="border:none; box-shadow:none;"></img>
 
 Note:
-- Channel features other channels
-- Frindships can be visualized with graphs
-- A friendship can be one sided or both sided
+- Links can be visualized with graphs
+- A link can be one sided or both sided
+- we call this special case: "friendship"
+
+- Bigger Picture: We can derive a huge graph from these links.
+- But: too much clutter. Too big to handle. We want to visualize a special structure.
 
 ---
 
@@ -45,10 +54,10 @@ Note:
 <small>Example: YouTube Channel <a href="https://www.youtube.com/user/HandIOfIBlood">HandOfBlood</a> Depth 3</small>
 
 Note:
-Too many links
- - More meaningfull base data
-   - Search for double links
-   - Implicit shortest path between YouTube Channels
+- As example
+
+- Using double-links as more meaningfull base data
+- Explaining depth in next slide
 
 +++
 
@@ -58,8 +67,10 @@ Too many links
 <img src="assets/graph_test.jpg" style="border:none; box-shadow:none;"></img>
 
 Note:
-- Graph structure
-- Horizontal graph layout 
+- Horizontal graph layout. Starting from one channel as seed. Graph becomes a tree.
+- Depth in tree indicates relation: friend, friend of friend and so on
+
+- Now we have a meaningful representation of these friendships. We can derive tasks.
 
 ---
 
@@ -68,11 +79,13 @@ Note:
 <img src="assets/interaction.jpg" style="border:none; box-shadow:none;"></img>
 
 Note:
-- Discover new YouTube Channels based on user preferences
+- Task: Disover new channels by exploring circle of friends based on a seed channel
+- One question might arise: at which depth n? This question will be answered by using our implemented techniques.
 
 +++
 <h2 style="display:inline"> Concept/</h2><h2 style="color:grey;display:inline;">Techniques</h2>
----
+
+--
 
 # Demo
 
