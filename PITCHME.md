@@ -84,7 +84,8 @@ Note:
 
 +++
 <h2 style="display:inline"> Concept/</h2><h2 style="color:grey;display:inline;">Techniques</h2>
-<h2 style="display:inline" class="fragment"> Concept/</h2><h2 style="color:grey;display:inline;">Demo</h2>
++++
+<h2 style="display:inline"> Concept/</h2><h2 style="color:grey;display:inline;">Demo</h2>
 
 Note:
 Explain Application UI
