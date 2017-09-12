@@ -8,6 +8,10 @@
 - Graph structure
 - Horizontal graph layout 
 - Too many links
+Example YouTube Channel HandOfBlood
+Depth 3: 355 linked channels
+         153 double-linked channels
+
 - More meaningfull base data
   - Search for double links
   - Implicit shortest path between YouTube Channels
