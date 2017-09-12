@@ -6,7 +6,7 @@
 
 Note: lorem ipsum
 
-+++
+---
 
 <img src="assets/links.jpg" style="border:none;"></img>
 
