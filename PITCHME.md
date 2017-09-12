@@ -2,19 +2,22 @@
 ---
 ## Idea
 
-<img src="assets/HoB.jpg" style="border:none"/>
+<img src="assets/HoB.jpg" style="border:none;"/>
 
 Note: lorem ipsum
 
 +++
 
-<img src="assets/links.jpg" style="border:none"/>
+<img src="assets/links.jpg" style="border:none;"/>
 
 ---
 
+<img src="assets/graph.jpg" style="border:none;"/>
+
+---
 ## Concept
 
-<img src="assets/graph.jpg" style="border:none"/>
+
 
 - More meaningfull base data
   - Search for double links
