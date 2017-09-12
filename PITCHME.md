@@ -13,7 +13,9 @@ Note: lorem ipsum
 ---
 
 ## Concept
-<img src="assets/graph.jpg" style="border:none"/>
+
+<img src="assets/graph.png" style="border:none"/>
+
 - More meaningfull base data
   - Search for double links
   - Implicit shortest path between YouTube Channels
