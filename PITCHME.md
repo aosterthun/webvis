@@ -3,8 +3,14 @@
 
 ## Concept
 
-![links](assets/links.jpg)
-![HoB](assets/HoB.jpg)
+<img src="assets/HoB.jpg"/>
+
++++
+
+<img src="assets/links.jpg"/>
+
++++
+
 - YouTube Channels 
 - YouTube Featured Channels (Meta Data)
 - Graph structure
