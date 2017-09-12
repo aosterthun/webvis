@@ -10,14 +10,20 @@
 - Too many links
 Example YouTube Channel HandOfBlood
 Depth 3
-<div style="width:355px; background-color:red;">
-355
+<div>
+  <span style="color:red;"> linked </span>
+  <div style="width:355px; background-color:red;">
+  355
+  </div>
 </div>
-<div style="width:153px; background-color:blue;">
-153
+<div>
+  <span style="color:blue;"> double-linked </span>
+  <div style="width:153px; background-color:blue;">
+  153
+  </div>
 </div>
-<span style="color:red;"> linked </span>
-<span style="color:blue;"> double-linked </span>
+
+
 
 - More meaningfull base data
   - Search for double links
