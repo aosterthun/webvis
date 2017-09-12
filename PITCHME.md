@@ -10,7 +10,6 @@
 - More meaningfull base data
   - Search for double links
   - Implicit shortest path between YouTube Channels
-- Too many links
 <div>
 <table style="border:none;">
 <tr>
