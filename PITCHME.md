@@ -13,10 +13,11 @@ Note: lorem ipsum
 ---
 
 ## Concept
+<img src="assets/HoB_BH_D3.png" style="border:none;"></img>
 <table>
   <tr>
     <td>
-      <img src="assets/HoB_BH_D3.png" style="border:none;"></img>
+
     </td>
     <td>
       <div>
