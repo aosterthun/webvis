@@ -14,39 +14,38 @@ Note: lorem ipsum
 
 ## Concept
 <table>
-<tr>
-<td>
-<img alt="graph" src="assets/graph.jpg" style="border:none; width:50%; height:50%;"/>
-</td>
-<td>
-<div>
-<table style="border:none; ">
-<tr>
-<td style="text-align:right;">
-<span style="color:red;"> linked </span>
-</td>
-<td>
-<div style="width:355px; background-color:red;">
-  355
-  </div>
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-  <span style="color:blue;"> double-linked </span>
-</td>
-<td>
-<div style="width:153px; background-color:blue;">
-  153
-  </div>
-</td>
-</tr>
-</table>
-<small>Example: YouTube Channel <a href="https://www.youtube.com/user/HandIOfIBlood">HandOfBlood</a>
-Depth 3</small>
-</div>
-</td>
-</tr>
+  <tr>
+    <td>
+      <img alt="graph" src="assets/graph.jpg" style="border:none;"/>
+    </td>
+    <td>
+      <div>
+        <table style="border:none; ">
+          <tr>
+            <td style="text-align:right;">
+              <span style="color:red;"> linked </span>
+            </td>
+            <td>
+              <div style="width:355px; background-color:red;">
+                355
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align:right;">
+              <span style="color:blue;"> double-linked </span>
+            </td>
+            <td>
+              <div style="width:153px; background-color:blue;">
+                153
+              </div>
+            </td>
+          </tr>
+        </table>
+        <small>Example: YouTube Channel <a href="https://www.youtube.com/user/HandIOfIBlood">HandOfBlood</a> Depth 3</small>
+      </div>
+    </td>
+  </tr>
 </table>
 
 
