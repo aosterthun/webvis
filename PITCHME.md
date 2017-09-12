@@ -60,7 +60,7 @@ Too many links
    - Implicit shortest path between YouTube Channels
 ---
 
-<h2 style="display:inline"> Goals/</h2><h2 style="color:grey;display:inline;">Task/Techniques</h2>
+<h2 style="display:inline"> Goals/</h2><h2 style="color:grey;display:inline;">Task</h2>
 
 <img src="assets/interaction.jpg" style="border:none; box-shadow:none;"></img>
 
