@@ -10,7 +10,7 @@
 - Too many links
 Example YouTube Channel HandOfBlood
 Depth 3
-<div width="355px" background-color="red">
+<div style="background-color:"red; width:"355px">
 355 linked
 </div>
 <div width="153px" background-color="blue">
