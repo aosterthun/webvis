@@ -46,13 +46,8 @@ Note: lorem ipsum
 
 ---
 
-## Visualization Goals
+<h2 style="display:inline"> Goals/</h2><h2 style="color:grey;display:inline;">Task/Techniques</h2>
 
-- Discover new YouTube Channels based on user preferences
-- User preferences:
-  - YouTube Channel as seed for data crawling
-  - Marking of interesting YouTube Channels (Clustering -> Technical Challenges)
-  - Depth threshold for graph search
 
 ---
 
