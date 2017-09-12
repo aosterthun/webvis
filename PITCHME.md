@@ -12,6 +12,10 @@ Note:
 
 <img src="assets/links.jpg" style="border:none; box-shadow:none;"></img>
 
+Note:
+- Frindships can be visualized with graphs
+- A friendship can be one sided or both sided
+
 ---
 
 <h2 style="display:inline"> Concept/</h2><h2 style="color:grey;display:inline;">Layout</h2>
