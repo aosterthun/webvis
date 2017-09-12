@@ -10,18 +10,30 @@
 - Too many links
 Example YouTube Channel HandOfBlood
 Depth 3
-<div>
-  <span style="color:red;"> linked </span>
-  <div style="width:355px; background-color:red;">
+
+<table>
+<tr border="0">
+<td>
+<span style="color:red;"> linked </span>
+</td>
+<td>
+<div style="width:355px; background-color:red;">
   355
   </div>
-</div>
-<div>
+</td>
+</tr>
+<tr>
+<td>
   <span style="color:blue;"> double-linked </span>
-  <div style="width:153px; background-color:blue;">
+</td>
+<td>
+<div style="width:153px; background-color:blue;">
   153
   </div>
-</div>
+</td>
+</tr>
+</table>
+
 
 
 
