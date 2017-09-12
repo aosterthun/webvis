@@ -18,16 +18,6 @@ Note:
 
 ---
 
-<h2 style="display:inline"> Concept/</h2><h2 style="color:grey;display:inline;">Layout</h2>
-
-
-<img src="assets/graph_test.jpg" style="border:none; box-shadow:none;"></img>
-
-Note:
-- Graph structure
-- Horizontal graph layout 
-+++
-
 <h2 style="display:inline"> Concept/</h2><h2 style="color:grey;display:inline;">Abstraction</h2>
 <table style="border:none; ">
   <tr>
@@ -58,9 +48,21 @@ Too many links
  - More meaningfull base data
    - Search for double links
    - Implicit shortest path between YouTube Channels
+
++++
+
+<h2 style="display:inline"> Concept/</h2><h2 style="color:grey;display:inline;">Layout</h2>
+
+
+<img src="assets/graph_test.jpg" style="border:none; box-shadow:none;"></img>
+
+Note:
+- Graph structure
+- Horizontal graph layout 
+
 ---
 
-<h2 style="display:inline"> Goals/</h2><h2 style="color:grey;display:inline;">Task</h2>
+<h2 style="display:inline"> Concept/</h2><h2 style="color:grey;display:inline;">Task</h2>
 
 <img src="assets/interaction.jpg" style="border:none; box-shadow:none;"></img>
 
@@ -72,7 +74,7 @@ Note:
  - Depth threshold for graph search
 
 +++
-<h2 style="display:inline"> Goals/</h2><h2 style="color:grey;display:inline;">Techniques</h2>
+<h2 style="display:inline"> Concept/</h2><h2 style="color:grey;display:inline;">Techniques</h2>
 ---
 
 # Demo
