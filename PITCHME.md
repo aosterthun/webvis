@@ -48,7 +48,7 @@ Note: lorem ipsum
 
 <h2 style="display:inline"> Goals/</h2><h2 style="color:grey;display:inline;">Task/Techniques</h2>
 
-
+<img src="assets/interaction.png"/>
 ---
 
 # Demo
