@@ -93,13 +93,22 @@ Explain Application UI
  - Marking of interesting YouTube Channels (Clustering -> Technical Challenges)
  - Depth threshold for graph search
  
-Explain Dataset
+Explain what we see
+Seed channel
+Friends, friends of friends ...
+Hovering. Depends on specified depth
+Depth specified in menu
+Buttons: friend, friend of friend or value
 
-Show techniques
+Saving hover state as markers
 
+Example Doctor Froid & BeHaind Depth: 2
 Explain task result
 
-(Explain observations)
+Reset click
+
+Example Doctor Froid & BeHaind Depth: 3
+Explain task result
 
 ---
 
