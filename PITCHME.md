@@ -12,7 +12,7 @@ Note: lorem ipsum
 
 ---
 
-<img src="assets/graph.jpg" style="border:none;"/>
+<img alt="graph" src="assets/graph.jpg" style="border:none;"/>
 
 ---
 ## Concept
