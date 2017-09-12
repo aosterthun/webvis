@@ -8,7 +8,7 @@ Note: lorem ipsum
 
 +++
 
-<img src="assets/links.jpg" style="border:none;"></img>
+<img src="assets/links.jpg" style="border:none; box-shadow:none;"></img>
 
 ---
 
@@ -20,7 +20,7 @@ Note: lorem ipsum
 
 ## Concept
 <table style="border:none; ">
-  <tr class="fragment">
+  <tr>
     <td style="text-align:right;">
       <span style="color:red;"> linked </span>
     </td>
@@ -30,7 +30,7 @@ Note: lorem ipsum
       </div>
     </td>
   </tr>
-  <tr class="fragment">
+  <tr>
     <td style="text-align:right;">
       <span style="color:blue;"> double-linked </span>
     </td>
