@@ -8,9 +8,7 @@
 - Graph structure
 - Horizontal graph layout 
 - Too many links
-Example YouTube Channel HandOfBlood
-Depth 3
-
+<div>
 <table style="border:none;">
 <tr>
 <td style="text-align:right;">
@@ -33,7 +31,9 @@ Depth 3
 </td>
 </tr>
 </table>
-
+<small>Example YouTube Channel HandOfBlood
+Depth 3</small>
+</div>
 
 
 
