@@ -68,16 +68,26 @@ Note:
 
 Note:
 - Discover new YouTube Channels based on user preferences
-- User preferences:
- - YouTube Channel as seed for data crawling
- - Marking of interesting YouTube Channels (Clustering -> Technical Challenges)
- - Depth threshold for graph search
 
 +++
 <h2 style="display:inline"> Concept/</h2><h2 style="color:grey;display:inline;">Techniques</h2>
 ---
 
 # Demo
+
+Note:
+Explain Application UI
+ - YouTube Channel as seed for data crawling
+ - Marking of interesting YouTube Channels (Clustering -> Technical Challenges)
+ - Depth threshold for graph search
+ 
+Explain Dataset
+
+Show techniques
+
+Explain task result
+
+(Explain observations)
 
 ---
 
@@ -91,3 +101,6 @@ Note:
     <li>🔍 Technical curiosity </li>
     <li>🐢 Slow data structure algorithms </li>
   </ul>
+  
+  Note:
+  None yet
