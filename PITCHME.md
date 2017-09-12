@@ -12,6 +12,10 @@ Note:
 
 <img src="assets/links.jpg" style="border:none; box-shadow:none;"></img>
 
+Note:
+- Frindships can be visualized with graphs
+- A friendship can be one sided or both sided
+
 ---
 
 <h2 style="display:inline"> Concept/</h2><h2 style="color:grey;display:inline;">Layout</h2>
@@ -56,7 +60,7 @@ Too many links
    - Implicit shortest path between YouTube Channels
 ---
 
-<h2 style="display:inline"> Goals/</h2><h2 style="color:grey;display:inline;">Task/Techniques</h2>
+<h2 style="display:inline"> Goals/</h2><h2 style="color:grey;display:inline;">Task</h2>
 
 <img src="assets/interaction.jpg" style="border:none; box-shadow:none;"></img>
 
@@ -66,6 +70,9 @@ Note:
  - YouTube Channel as seed for data crawling
  - Marking of interesting YouTube Channels (Clustering -> Technical Challenges)
  - Depth threshold for graph search
+
++++
+<h2 style="display:inline"> Goals/</h2><h2 style="color:grey;display:inline;">Techniques</h2>
 ---
 
 # Demo
