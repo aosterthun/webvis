@@ -9,8 +9,13 @@
 - Horizontal graph layout 
 - Too many links
 Example YouTube Channel HandOfBlood
-Depth 3: 355 linked channels
-         153 double-linked channels
+Depth 3
+<div width="355px" background-color="red">
+355 linked
+</div>
+<div width="153px" background-color="blue">
+153 double-linked
+</div>
 
 - More meaningfull base data
   - Search for double links
