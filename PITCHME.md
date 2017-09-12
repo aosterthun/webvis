@@ -7,6 +7,9 @@
 - YouTube Featured Channels (Meta Data)
 - Graph structure
 - Horizontal graph layout 
+- More meaningfull base data
+  - Search for double links
+  - Implicit shortest path between YouTube Channels
 - Too many links
 <div>
 <table style="border:none;">
@@ -37,9 +40,6 @@ Depth 3</small>
 
 
 
-- More meaningfull base data
-  - Search for double links
-  - Implicit shortest path between YouTube Channels
 
 +++
 
