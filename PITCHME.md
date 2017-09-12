@@ -3,18 +3,44 @@
 
 ## Concept
 
+![links](assets/links.png)
+![HoB](assets/HoB.png)
 - YouTube Channels 
 - YouTube Featured Channels (Meta Data)
 - Graph structure
 - Horizontal graph layout 
-- Too many links
-Example YouTube Channel HandOfBlood
-Depth 3: 355 linked channels
-         153 double-linked channels
-
 - More meaningfull base data
   - Search for double links
   - Implicit shortest path between YouTube Channels
+<div>
+<table style="border:none;">
+<tr>
+<td style="text-align:right;">
+<span style="color:red;"> linked </span>
+</td>
+<td>
+<div style="width:355px; background-color:red;">
+  355
+  </div>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+  <span style="color:blue;"> double-linked </span>
+</td>
+<td>
+<div style="width:153px; background-color:blue;">
+  153
+  </div>
+</td>
+</tr>
+</table>
+<small>Example: YouTube Channel <a href="https://www.youtube.com/user/HandIOfIBlood">HandOfBlood</a>
+Depth 3</small>
+</div>
+
+
+
 
 +++
 
