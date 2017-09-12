@@ -12,12 +12,9 @@ Note: lorem ipsum
 
 ---
 
-<img alt="graph" src="assets/graph.jpg" style="border:none;"/>
-
----
 ## Concept
 
-
+<img alt="graph" src="assets/graph.jpg" style="border:none; width:50%; height:50%;"/>
 
 - More meaningfull base data
   - Search for double links
