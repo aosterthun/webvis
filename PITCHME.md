@@ -31,7 +31,7 @@
 </td>
 </tr>
 </table>
-<small>Example YouTube Channel HandOfBlood
+<small>Example: YouTube Channel <a href="https://www.youtube.com/user/HandIOfIBlood">HandOfBlood</a>
 Depth 3</small>
 </div>
 
