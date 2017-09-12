@@ -12,7 +12,7 @@ Note: lorem ipsum
 
 ---
 
-## Concept
+## Concept <small> Layout </small>
 
 <img src="assets/graph.jpg" style="border:none; box-shadow:none;"></img>
 
