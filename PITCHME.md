@@ -16,7 +16,7 @@ Note: lorem ipsum
 <table>
   <tr>
     <td>
-      <img src="assets/graph_test.jpg" style="border:none;"></img>
+      <img src="assets/HoB_BH_D3.png" style="border:none;"></img>
     </td>
     <td>
       <div>
