@@ -105,7 +105,13 @@ Explain task result
 
 ## Design Challenges
 
-- In- and Inter-Layer cluster arrangement
+<img src="assets/DF_GLP_D5.png" style="border:none;"></img>
+
+Note:
+Y-Axes can be sorted. But how :(?
+ - Problem: In- and Inter-Layer cluster arrangement
++++
+## Design Challenges
 - Seperation of data gathering and visualization
   - Server-Client layout
 - Ground up implementation
