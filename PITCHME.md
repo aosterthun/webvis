@@ -13,10 +13,10 @@ Note: lorem ipsum
 ---
 
 ## Concept
-
-<img alt="graph" src="assets/graph.jpg" style="border:none; width:50%; height:50%;"/>
 <div>
-<table style="border:none;">
+<img alt="graph" src="assets/graph.jpg" style="border:none; width:50%; height:50%; display: inline-block;"/>
+<div>
+<table style="border:none; display: inline-block;">
 <tr>
 <td style="text-align:right;">
 <span style="color:red;"> linked </span>
@@ -40,6 +40,7 @@ Note: lorem ipsum
 </table>
 <small>Example: YouTube Channel <a href="https://www.youtube.com/user/HandIOfIBlood">HandOfBlood</a>
 Depth 3</small>
+</div>
 </div>
 
 
