@@ -1,16 +1,17 @@
 # YouTube Network Analyzer
 ---
 
-## Concept
 
 <img src="assets/HoB.jpg" style="border:none"/>
 
+## Concept
 +++
 
 <img src="assets/links.jpg" style="border:none"/>
-
+## Concept
 +++
 
+## Concept
 - YouTube Channels 
 - YouTube Featured Channels (Meta Data)
 - Graph structure
