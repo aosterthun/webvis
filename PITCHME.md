@@ -11,10 +11,6 @@
 ---
 
 ## Concept
-- YouTube Channels 
-- YouTube Featured Channels (Meta Data)
-- Graph structure
-- Horizontal graph layout 
 - More meaningfull base data
   - Search for double links
   - Implicit shortest path between YouTube Channels
