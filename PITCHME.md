@@ -4,11 +4,10 @@
 
 <img src="assets/HoB.jpg" style="border:none"/>
 
-## Concept
 +++
 
 <img src="assets/links.jpg" style="border:none"/>
-## Concept
+
 +++
 
 ## Concept
