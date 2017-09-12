@@ -1,0 +1,116 @@
+<html>
+<head>
+	<title></title>
+	<script src="https://use.fontawesome.com/1bd6643530.js"></script>
+	<script type="text/javascript" src="Framework/jQuery.js"></script>
+	<script type="text/javascript" src="Framework/bootstrap.min.js"></script>
+	<script type="text/javascript" src="Framework/WeightedGraph/Edge.js"></script>
+	<script type="text/javascript" src="Framework/WeightedGraph/Vertex.js"></script>
+	<script type="text/javascript" src="Framework/WeightedGraph/WeightedGraph.js"></script>
+	<script type="text/javascript" src="index.js"></script>
+	<!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      
+	<link rel="stylesheet" type="text/css" href="Framework/bootstrap.css">
+	<style type="text/css">
+	#settings {
+		position: absolute;
+		top: -100px;
+		height: 100px;
+		width: 310px;
+		background-color: #eee8d5;
+		border-bottom-right-radius: 10px;
+		transition: top 1s;
+	}
+
+	#marker_div {
+		position: absolute;
+		background-color: #fdf6e3;
+		border-radius: 5px;
+		margin: 5px;
+		padding: 5px;
+		width: 100px;
+	}
+
+	#search_depth_div {
+		position: absolute;
+		left: 110px;
+		background-color: #fdf6e3;
+		border-radius: 5px;
+		margin: 5px;
+		padding: 5px;
+		width: 190px;
+	}
+
+	#search_depth {
+		margin-left: 3px;
+	}
+
+	#depth_group {
+		height: 40px;
+	}
+
+	#marker_group {
+		height:  40px;
+	}
+
+	.container {
+		background-color: #eee8d5;
+		display: block;
+		position: absolute;
+		border-bottom-right-radius: 5px;
+		border-bottom-left-radius: 5px;
+		top: 0;
+		width: 65px;
+		left: 10px;
+		cursor: pointer;
+		transition: top 1s;
+	}
+
+	.bar1, .bar2, .bar3 {
+		width: 35px;
+		height: 5px;
+		background-color: #268bd2;
+		margin: 5px 0;
+	}
+
+	.fa {
+		margin-top: 3px;
+	}
+	</style>
+</head>
+<body style="margin: 0;">
+	<div class="container">
+		<div class="bar1"></div>
+		<div class="bar2"></div>
+		<div class="bar3"></div>
+	</div>
+	<div id="settings" class="">
+		<div id="search_depth_div">
+			<h4>Search Depth</h4>
+			<div id="depth_group" class="btn-group" data-toggle="buttons">
+				<label id="depth_2" class="btn btn-secondary">
+					<input type="radio" name="options" id="" autocomplete="off" color="#859900" value="2"> <i class="material-icons">group</i>
+				</label>
+				<label id="depth_3" class="btn btn-secondary">
+					<input type="radio" name="options" id="" autocomplete="off" color="#dc322f" value="3">  <i class="fa fa-users" aria-hidden="true"></i>
+				</label>
+			</div>
+			<i class="fa fa-user-times" aria-hidden="true"></i><input id="search_depth" type="number" min="0" max="100" value="3"> 
+		</div>
+		<div id="marker_div">
+			<h4>Marker</h4>
+			<div id="marker_group" class="btn-group" data-toggle="buttons">
+				<label id="marker_1_label" class="btn btn-primary">
+					<input type="radio" name="options" id="marker_1" autocomplete="off" stroke_color="fdf6e3" color="#dc322f"> <i class="fa fa-user-plus" aria-hidden="true"></i>
+				</label>
+				<label id="marker_2_label" class="btn btn-secondary">
+					<input type="radio" name="options" id="marker_2" autocomplete="off" stroke_color="fdf6e3" color="#859900"> <i class="fa fa-user-plus" aria-hidden="true"></i>
+				</label>
+			</div>
+		</div>
+	</div>
+	<canvas id ="graph" style="background-color: #002b36;"></canvas>
+</body>
+</html>
