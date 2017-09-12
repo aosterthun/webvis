@@ -14,9 +14,9 @@ Note: lorem ipsum
 
 ## Concept
 <div>
-<img alt="graph" src="assets/graph.jpg" style="border:none; width:50%; height:50%; display: inline-block;"/>
+<img alt="graph" src="assets/graph.jpg" style="border:none; width:50%; height:50%; display: inline;"/>
 <div>
-<table style="border:none; display: inline-block;">
+<table style="border:none; display: inline;">
 <tr>
 <td style="text-align:right;">
 <span style="color:red;"> linked </span>
