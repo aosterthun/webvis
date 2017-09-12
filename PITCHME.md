@@ -13,8 +13,12 @@ Note: lorem ipsum
 ---
 
 ## Concept
-<div style="display: table;">
+<table>
+<tr>
+<td>
 <img alt="graph" src="assets/graph.jpg" style="border:none; width:50%; height:50%;"/>
+</td>
+<td>
 <div>
 <table style="border:none; ">
 <tr>
@@ -41,7 +45,9 @@ Note: lorem ipsum
 <small>Example: YouTube Channel <a href="https://www.youtube.com/user/HandIOfIBlood">HandOfBlood</a>
 Depth 3</small>
 </div>
-</div>
+</td>
+</tr>
+</table>
 
 
 
