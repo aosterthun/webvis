@@ -4,7 +4,9 @@
 
 <img src="assets/HoB.jpg" style="border:none;"></img>
 
-Note: lorem ipsum
+Note:
+ - YouTube Channels 
+ - YouTube Featured Channels (Meta Data)
 
 +++
 
@@ -15,8 +17,11 @@ Note: lorem ipsum
 <h2 style="display:inline"> Concept/</h2><h2 style="color:grey;display:inline;">Layout</h2>
 
 
-<img src="assets/graph.jpg" style="border:none; box-shadow:none;"></img>
+<img src="assets/graph_test.jpg" style="border:none; box-shadow:none;"></img>
 
+Note:
+- Graph structure
+- Horizontal graph layout 
 +++
 
 <h2 style="display:inline"> Concept/</h2><h2 style="color:grey;display:inline;">Abstraction</h2>
@@ -44,11 +49,23 @@ Note: lorem ipsum
 </table>
 <small>Example: YouTube Channel <a href="https://www.youtube.com/user/HandIOfIBlood">HandOfBlood</a> Depth 3</small>
 
+Note:
+Too many links
+ - More meaningfull base data
+   - Search for double links
+   - Implicit shortest path between YouTube Channels
 ---
 
 <h2 style="display:inline"> Goals/</h2><h2 style="color:grey;display:inline;">Task/Techniques</h2>
 
 <img src="assets/interaction.jpg" style="border:none; box-shadow:none;"></img>
+
+Note:
+- Discover new YouTube Channels based on user preferences
+- User preferences:
+ - YouTube Channel as seed for data crawling
+ - Marking of interesting YouTube Channels (Clustering -> Technical Challenges)
+ - Depth threshold for graph search
 ---
 
 # Demo
