@@ -20,7 +20,9 @@ Note: lorem ipsum
 <table>
   <tr class="fragment">
     <td>
+    <div>
       <img src="assets/graph.jpg" style="border:none;"></img>
+      </div>
     </td>
     <td>
       <div>
