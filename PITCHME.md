@@ -12,14 +12,14 @@ Note: lorem ipsum
 
 ---
 
-<h2 style="display:inline"> Concept/</h2><h2 style="color:grey;">Layout</h2>
+<h2 style="display:inline"> Concept/</h2><h2 style="color:grey;display:inline;">Layout</h2>
 
 
 <img src="assets/graph.jpg" style="border:none; box-shadow:none;"></img>
 
 +++
 
-<h2 style="display:inline"> Concept/</h2><h2 style="color:grey;">Abstraction</h2>
+<h2 style="display:inline"> Concept/</h2><h2 style="color:grey;display:inline;">Abstraction</h2>
 <table style="border:none; ">
   <tr>
     <td style="text-align:right;">
