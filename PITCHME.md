@@ -11,8 +11,8 @@
 Example YouTube Channel HandOfBlood
 Depth 3
 
-<table>
-<tr border="0">
+<table style="border: 0px;">
+<tr>
 <td style="text-align:right;">
 <span style="color:red;"> linked </span>
 </td>
