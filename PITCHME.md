@@ -13,7 +13,7 @@ Note: lorem ipsum
 ---
 
 ## Concept
-<small>Layout</small>
+<small style="margin-bot:-10px">Layout</small>
 
 <img src="assets/graph.jpg" style="border:none; box-shadow:none;"></img>
 
