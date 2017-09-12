@@ -3,11 +3,11 @@
 
 ## Concept
 
-<img src="assets/HoB.jpg"/>
+<img src="assets/HoB.jpg" style="border:none"/>
 
 +++
 
-<img src="assets/links.jpg"/>
+<img src="assets/links.jpg" style="border:none"/>
 
 +++
 
