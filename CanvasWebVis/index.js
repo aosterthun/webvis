@@ -77,14 +77,14 @@ $(window).on("load", function(){
 	//_markers = [{"id": "marker_1", "color": $("#marker_1").attr("color")},{"id": "marker_2", "color": $("#marker_2").attr("color")}]
 	_markers_to_channel = [{"id": "marker_1", "channel_id": null},{"id": "marker_2", "channel_id": null}];
 	_selected_marker_id = null;
-	_selected_depth = 3;
+	_selected_depth = 4;
 
 	$("#marker_group :input").change(function(){
 		_selected_marker_id = $(this).attr("id");
 	});
 
 	$("#search_depth_div input").change(function(){
-		_selected_depth = parseInt($(this).val());
+		_selected_depth = parseInt($(this).val()) +1;
 		if($(this).attr("id") == "search_depth")
 		{
 			$("#search_depth_div label").each(function(_index){
