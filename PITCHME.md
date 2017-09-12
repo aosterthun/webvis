@@ -13,7 +13,7 @@ Depth 3
 
 <table>
 <tr border="0">
-<td>
+<td style="text-align:right;">
 <span style="color:red;"> linked </span>
 </td>
 <td>
@@ -23,7 +23,7 @@ Depth 3
 </td>
 </tr>
 <tr>
-<td>
+<td style="text-align:right;">
   <span style="color:blue;"> double-linked </span>
 </td>
 <td>
