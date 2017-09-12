@@ -14,48 +14,36 @@ Note: lorem ipsum
 
 ## Concept
 
+<img src="assets/graph.jpg" style="border:none;"></img>
 
++++
 
-
-<table>
+## Concept
+<table style="border:none; ">
   <tr class="fragment">
-    <td>
-    <div>
-      <img src="assets/graph.jpg" style="border:none;"></img>
-      </div>
+    <td style="text-align:right;">
+      <span style="color:red;"> linked </span>
     </td>
     <td>
-      <div>
-        <table style="border:none; ">
-          <tr class="fragment">
-            <td style="text-align:right;">
-              <span style="color:red;"> linked </span>
-            </td>
-            <td>
-              <div style="width:355px; background-color:red;">
-                355
-              </div>
-            </td>
-          </tr>
-          <tr class="fragment">
-            <td style="text-align:right;">
-              <span style="color:blue;"> double-linked </span>
-            </td>
-            <td>
-              <div style="width:153px; background-color:blue;">
-                153
-              </div>
-            </td>
-          </tr>
-        </table>
-        <small>Example: YouTube Channel <a href="https://www.youtube.com/user/HandIOfIBlood">HandOfBlood</a> Depth 3</small>
+      <div style="width:355px; background-color:red;">
+        355
+      </div>
+    </td>
+  </tr>
+  <tr class="fragment">
+    <td style="text-align:right;">
+      <span style="color:blue;"> double-linked </span>
+    </td>
+    <td>
+      <div style="width:153px; background-color:blue;">
+        153
       </div>
     </td>
   </tr>
 </table>
+<small>Example: YouTube Channel <a href="https://www.youtube.com/user/HandIOfIBlood">HandOfBlood</a> Depth 3</small>
 
-
-+++
+---
 
 ## Visualization Goals
 
