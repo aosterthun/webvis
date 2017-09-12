@@ -1,10 +1,11 @@
 # YouTube Network Analyzer
 ---
-
+## Idea
 
 <img src="assets/HoB.jpg" style="border:none"/>
 
 +++
+## Idea
 
 <img src="assets/links.jpg" style="border:none"/>
 
