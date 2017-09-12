@@ -13,6 +13,7 @@ Note:
 <img src="assets/links.jpg" style="border:none; box-shadow:none;"></img>
 
 Note:
+- Channel features other channels
 - Frindships can be visualized with graphs
 - A friendship can be one sided or both sided
 
