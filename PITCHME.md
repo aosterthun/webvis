@@ -114,5 +114,4 @@ Explain task result
     <li>🐢 Slow data structure algorithms </li>
   </ul>
   
-  Note:
-  None yet
+  
