@@ -1,20 +1,19 @@
 # YouTube Network Analyzer
 ---
-
+## Idea
 
 <img src="assets/HoB.jpg" style="border:none"/>
+
+Note: lorem ipsum
 
 +++
 
 <img src="assets/links.jpg" style="border:none"/>
 
-+++
+---
 
 ## Concept
-- YouTube Channels 
-- YouTube Featured Channels (Meta Data)
-- Graph structure
-- Horizontal graph layout 
+<img src="assets/graph.jpg" style="border:none"/>
 - More meaningfull base data
   - Search for double links
   - Implicit shortest path between YouTube Channels
