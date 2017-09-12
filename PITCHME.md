@@ -15,10 +15,6 @@ Note: lorem ipsum
 ## Concept
 
 <img alt="graph" src="assets/graph.jpg" style="border:none; width:50%; height:50%;"/>
-
-- More meaningfull base data
-  - Search for double links
-  - Implicit shortest path between YouTube Channels
 <div>
 <table style="border:none;">
 <tr>
