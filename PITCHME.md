@@ -15,7 +15,7 @@ Note: lorem ipsum
 <h2 style="display:inline"> Concept/</h2><h2 style="color:grey;display:inline;">Layout</h2>
 
 
-<img src="assets/graph.jpg" style="border:none; box-shadow:none;"></img>
+<img src="assets/graph_test.jpg" style="border:none; box-shadow:none;"></img>
 
 +++
 
