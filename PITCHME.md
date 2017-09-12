@@ -11,11 +11,13 @@
 Example YouTube Channel HandOfBlood
 Depth 3
 <div style="width:355px; background-color:red;">
-355 linked
+355
 </div>
 <div style="width:153px; background-color:blue;">
-153 double-linked
+153
 </div>
+<span style="color:red;"> linked </span>
+<span style="color:blue;"> double-linked </span>
 
 - More meaningfull base data
   - Search for double links
