@@ -16,7 +16,7 @@ Note: lorem ipsum
 <table>
   <tr>
     <td>
-      ![Logo](assets/graph.jpg)
+      ![Graph](assets/graph.jpg)
     </td>
     <td>
       <div>
