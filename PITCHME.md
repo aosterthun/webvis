@@ -133,3 +133,6 @@ Y-Axes can be sorted. But how :(?
 
 # 😧
 # Questions?
+
+Note:
+If you are interested in in-depth topics, like implementation and overall usage. You can view our repository at this link.
