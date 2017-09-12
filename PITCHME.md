@@ -70,6 +70,9 @@ Note:
  - YouTube Channel as seed for data crawling
  - Marking of interesting YouTube Channels (Clustering -> Technical Challenges)
  - Depth threshold for graph search
+
++++
+<h2 style="display:inline"> Goals/</h2><h2 style="color:grey;display:inline;">Techniques</h2>
 ---
 
 # Demo
